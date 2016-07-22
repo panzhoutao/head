@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A2E58"
+    android:gravity="center" >
+
+    <!-- xmlns:app="http://schemas.android.com/apk/res-auto"  这个必须写上，不然不生效
+     app:border_color="#00000000"                        去掉黑边框 -->
+    <com.circle.www.view.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/circleImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        app:border_color="#00000000" 
+        android:src="@drawable/g"
+        />
+
+</RelativeLayout>
