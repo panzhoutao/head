@@ -41,9 +41,10 @@ public class MainActivity extends Activity {
 		outputUri = Uri.fromFile(new File(newPath));
 
 		initView();
+		
 	}
 
-	// ³õÊ¼»¯Ô²ĞÎÍ·Ïñ¿Ø¼ş£»ÉèÖÃµã»÷ÊÂ¼ş£»
+	// åˆå§‹åŒ–åœ†å½¢å¤´åƒæ§ä»¶ï¼›è®¾ç½®ç‚¹å‡»äº‹ä»¶ï¼›
 	private void initView() {
 
 		circleImageView = (CircleImageView) findViewById(R.id.circleImageView);
@@ -68,7 +69,7 @@ public class MainActivity extends Activity {
 
 	}
 
-	// µ¯³öpopWindow
+	// å¼¹å‡ºpopWindow
 	protected void showPopWindow() {
 		View view = View.inflate(context, R.layout.popwindow, null);
 		popWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -87,7 +88,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// µã»÷Ïà»ú
+				// ç‚¹å‡»ç›¸æœº
 				dismissPopwindow();
 				showCamera();
 
@@ -98,7 +99,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// ´ÓÏà²áÖĞ»ñÈ¡
+				// ä»ç›¸å†Œä¸­è·å–
 				dismissPopwindow();
 				showPhone();
 
@@ -110,7 +111,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// È¡Ïû
+				// å–æ¶ˆ
 				dismissPopwindow();
 			}
 		});
@@ -124,13 +125,13 @@ public class MainActivity extends Activity {
 	String newPath = null;
 	Uri outputUri = null;
 
-	// ÆôÓÃÏµÍ³Ïà»ú
+	// å¯ç”¨ç³»ç»Ÿç›¸æœº
 	protected void showCamera() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(intent, REQUESTCODE_CAMERA);
 	}
 
-	// ÆôÓÃÏµÍ³
+	// å¯ç”¨ç³»ç»Ÿ
 	protected void showPhone() {
 		Intent intent = new Intent(Intent.ACTION_PICK, null);
 		intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -143,7 +144,7 @@ public class MainActivity extends Activity {
 
 		super.onActivityResult(requestCode, resultCode, data);
 
-		// Ïà»ú»Øµ÷
+		// ç›¸æœºå›è°ƒ
 		if (requestCode == REQUESTCODE_CAMERA) {
 
 			if (resultCode == RESULT_OK) {
@@ -151,7 +152,7 @@ public class MainActivity extends Activity {
 				changedImage = (Bitmap) bundle.get("data");
 				circleImageView.setImageBitmap(changedImage);
 			}
-		}// Ïà²á»Øµ÷
+		}// ç›¸å†Œå›è°ƒ
 		else if (requestCode == REQUESTCODE_GALLERY) {
 
 			if (resultCode == RESULT_OK) {
@@ -172,7 +173,7 @@ public class MainActivity extends Activity {
 
 			}
 		}
-		// ²Ã¼ô»Øµ÷
+		// è£å‰ªå›è°ƒ
 		else if (requestCode == REQUESTCODE_CROP) {
 			if (resultCode == RESULT_OK) {
 				try {
@@ -191,12 +192,12 @@ public class MainActivity extends Activity {
 	private void startPhotoZoom(Activity activity, Uri uri) {
 		Intent intent = new Intent("com.android.camera.action.CROP");
 		intent.setDataAndType(uri, "image/*");
-		// ÏÂÃæÕâ¸öcrop=trueÊÇÉèÖÃÔÚ¿ªÆôµÄIntentÖĞÉèÖÃÏÔÊ¾µÄVIEW¿É²Ã¼ô
+		// ä¸‹é¢è¿™ä¸ªcrop=trueæ˜¯è®¾ç½®åœ¨å¼€å¯çš„Intentä¸­è®¾ç½®æ˜¾ç¤ºçš„VIEWå¯è£å‰ª
 		intent.putExtra("crop", "true");
-		// aspectX aspectY ÊÇ¿í¸ßµÄ±ÈÀı
+		// aspectX aspectY æ˜¯å®½é«˜çš„æ¯”ä¾‹
 		intent.putExtra("aspectX", 1);
 		intent.putExtra("aspectY", 1);
-		// outputX outputY ÊÇ²Ã¼ôÍ¼Æ¬¿í¸ß
+		// outputX outputY æ˜¯è£å‰ªå›¾ç‰‡å®½é«˜
 		intent.putExtra("outputX", 100);
 		intent.putExtra("outputY", 100);
 		intent.putExtra("scale", true);
